@@ -52,7 +52,7 @@ Sau khi đã tạo File, muốn xem file ta dùng **cat test.txt**
 
 9. **Di chuyển và đổi tên File**
 
-Thường thường lệnh **"mv"** dùng để di chuyển File, nhưng nó cũng dùng để đổi tên File
+Thường thường lệnh **"mv"** dùng để di chuyển File, nhưng nó cũng dùng để đổi tên File.
 
 VD: mv test.txt test.doc
 
