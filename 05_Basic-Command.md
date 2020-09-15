@@ -156,7 +156,7 @@ Dùng để xóa file hay thư mục
 	   `+m` : sau m phút sẽ thưc hiện 
    * `wall` : tin nhắn thông báo
    
-   VD 
+   VD restart server sau 10p với thông báo "khoi dong lai"
    ```
    shutdown -r +10 "khoi dong lai"
 ```   
