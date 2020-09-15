@@ -118,7 +118,48 @@ Dùng để xóa file hay thư mục
    * `-r, -R` - xóa toàn bộ thư mục kể cả thư mục con 
    * `f` - xóa không cần hỏi 
    * `rmdir` - xóa file hay thư mục trống
+ 7. `touch`
+ * Dùng để tạo file trống 
+ ```
+ # touch <file name>
+ ```
+ * Tạo nhiều file:
+ ```
+ # touch file1 file2 file3
+ = # touch file{1,2,3}
+ = # touch {file1,file2,file3}
+ ```
+ 
+ 8. **`du` (disk usage)**
+ 
+ * Dùng để xem dung lượng của thư mục
+ ```
+ du [option] [path]
+ ```
+ * Option:
+     * `-s` : xuất kết quả theo summarize ( tổng dung lượng)
+     * `-h` : xuất ra kết quả theo dạng người dùng có thể đọc
+     * `-k` : hiển thị thông tin theo dạng kylobyte
+     * `-m` : hiển thị thông tin theo dạng mega byte 
+ 9. ** Các lệnh hệ thống **
+ * Tắt hệ thống hoặc khởi động lại.
+ ```
+ shutdown [options] [time] [wall]
+```
+   * Options:
+       `-h` : shutdown
+       `-r` : restart
+       `-c` : cancle pending shutdown
+   * Time :
+       `now`: thực hiện ngay lập tức
+       `hh:mm` : ấn định thời gian
+	   `+m` : sau m phút sẽ thưc hiện 
+   * `wall` : tin nhắn thông báo
    
+   VD 
+   ```
+   shutdown -r +10 "khoi dong lai"
+```   
 
 
    
