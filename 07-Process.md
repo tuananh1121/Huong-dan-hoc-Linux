@@ -69,10 +69,13 @@ ping -c 8.8.8.8 &
    ```
     * Options:
 	  * `-9` kill toàn bộ các process liên quan
-#### ** So sánh `ps` và `top` **
+#### **So sánh `ps` và `top`**
+
     * `ps` chỉ hiện thị từ dòng thứ 6 của lệnh `top` .
+	
     * Nếu `top` hiển thị một cách realtime các tiến trình thì `ps` chỉ hiện thị thông tin tại thời điểm khởi chạy lệnh .
-    * `top và `ps đều có thể dùng kết hợp với pipe tuy nhiên như vậy thì tính realtime của top sẽ không có ý nghĩa .
+	
+    * `top` và `ps` đều có thể dùng kết hợp với pipe tuy nhiên như vậy thì tính realtime của top sẽ không có ý nghĩa .
 
    
  
