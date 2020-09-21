@@ -36,6 +36,7 @@ ping -c 8.8.8.8 &
 * Deamon chỉ là một process mà chạy trong background , thường đợi cho cái gì đó xảy ra mà nó có khả năng làm việc với , giống như máy in deamon đang đợi các lệnh in .
 ![](image/process3.png/)
 6. **Các lệnh về Process**
+
    6.1. **`ps` - process status**
 	* Dùng để quan sát các process đang chạy.
 	* Cấu trúc lệnh:
@@ -48,6 +49,7 @@ ping -c 8.8.8.8 &
 	   * `aux` = `-ef`: hiển thị đầy đủ thông tin về tất cả các process
 	   * `-u`: hiển thị các process liên quan đến user hiện hành
 	   * `-p PID`: hiển thị thông tin process cụ thể.
+	   
    6.2. **`top`**
     * Nội dung hiển thị tương tự lệnh `ps -aux`
 	* Cấu trúc lệnh
@@ -57,6 +59,22 @@ ping -c 8.8.8.8 &
 	 * Options
 	   * `-n number` chỉ định số dòng hiển thị.
 	* Gõ `q` để thoát khỏi quá trình `top`
+	
+   6.3. **`kill`**
+   * Là lệnh tắt process đang chạy
+   * Khi sử dụng lệnh `kill` với một tiến trình con thì chỉ tiến trình đó được tắt nhưng nếu sử dụng `kill` với tiến trình cha thì toàn bộ con của nó cũng được tắt theo .
+   * Câu lệnh:
+   ```
+   kill [options] [PID]
+   ```
+    * Options:
+	  * `-9` kill toàn bộ các process liên quan
+#### ** So sánh `ps` và `top` **
+    * `ps` chỉ hiện thị từ dòng thứ 6 của lệnh `top` .
+    * Nếu `top` hiển thị một cách realtime các tiến trình thì `ps` chỉ hiện thị thông tin tại thời điểm khởi chạy lệnh .
+    * `top và `ps đều có thể dùng kết hợp với pipe tuy nhiên như vậy thì tính realtime của top sẽ không có ý nghĩa .
+
+   
  
 
 
