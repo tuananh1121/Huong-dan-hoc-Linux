@@ -63,7 +63,7 @@ tail [options] [file]
    * Options:
      * `-n [number]` số dòng muốn hiển thị (mặc định là 10)
 	 
-** Note**
+**Note**
 * Có thể dùng xem nội dung file `log`
 ```
 tail -f /var/log/boot.log
