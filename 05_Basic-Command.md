@@ -141,7 +141,7 @@ Dùng để xóa file hay thư mục
      * `-h` : xuất ra kết quả theo dạng người dùng có thể đọc
      * `-k` : hiển thị thông tin theo dạng kylobyte
      * `-m` : hiển thị thông tin theo dạng mega byte 
- 9. ** Các lệnh hệ thống **
+ 9. **Các lệnh hệ thống**
  * Tắt hệ thống hoặc khởi động lại.
  ```
  shutdown [options] [time] [wall]
