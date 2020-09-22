@@ -159,7 +159,25 @@ Dùng để xóa file hay thư mục
    VD restart server sau 10p với thông báo "khoi dong lai"
    ```
    shutdown -r +10 "khoi dong lai"
-```   
+```  
+9.1 **reboot**
+* Khởi động lại server
+```
+reboot
+```
+9.2 **init**
+```
+init [number] 
+```
+   * Nuumber:
+     * `3` restart
+	 * `0` shutdown
+9.3 **date**
+* Xem ngày giờ hệ thống
+```
+date
+```	 
+	 
 
 
    
