@@ -4,7 +4,7 @@
 
 *Cho biết thư mục hiện hành đang làm việc 
 
-2. ** `CD` (change dierctory)**
+2. **`CD` (change dierctory)**
 
 * Dùng để di chuyển vị trí làm việc đến mục khác
 
@@ -109,7 +109,7 @@ Dùng để tạo thư mục
  # mkdir muc1 muc2 muc3
   = # mkdir muc{1,2,3}
  ```
- 6. `rm` (remove)
+ 6. **`rm` (remove)**
  
 Dùng để xóa file hay thư mục
  ```
@@ -118,7 +118,7 @@ Dùng để xóa file hay thư mục
    * `-r, -R` - xóa toàn bộ thư mục kể cả thư mục con 
    * `f` - xóa không cần hỏi 
    * `rmdir` - xóa file hay thư mục trống
- 7. `touch`
+ 7. **`touch`**
  * Dùng để tạo file trống 
  ```
  # touch <file name>
