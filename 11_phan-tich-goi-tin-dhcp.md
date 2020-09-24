@@ -43,3 +43,17 @@ Ta sẽ bắt được 4 gói tin
 
 ![](/image/dhcp8.png)
 
+## Kiểm tra file log DHCP
+
+### Danh sách địa chỉ IP đã cấp phát
+Để xem danh sách những địa chỉ IP đã cấp phát ta dùng lệnh `cat /var/lib/dhcpd/dhcpd.leases`
+
+![](/image/dhcp9.png)
+
+### Quá trình cấp phát địa chỉ của DHCP
+
+![](/image/dhcp10.png)
+
+
+
+
