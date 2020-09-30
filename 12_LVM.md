@@ -45,7 +45,7 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
 
  * Ví dụ bạn có 4 ổ đĩa mỗi ổ 5GB khi bạn kết hợp nó lại thành 1 volume group 20GB, và bạn có thể tạo ra 2 logical volumes mỗi disk 10GB.
 
-![](lvm4.png)
+![](/image/lvm4.png)
 
 ### File Systems
  * Tổ chức và kiểm soát các tập tin
