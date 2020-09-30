@@ -66,6 +66,7 @@ firewall-cmd --reload
 Kiểm tra trạng thái dịch vụ `systemctl status dhcp`
 
 5. Cấu hình dhcp trên client
+
 5.1 Trên Client Centos
 
 Cài đặt interface mạng nhận dhcp của server:
