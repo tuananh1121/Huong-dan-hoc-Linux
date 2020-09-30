@@ -37,7 +37,7 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
 **Lưu ý : Boot Loader không thể đọc /boot khi nó nằm trên Logical Volume Group . Do đó không thể sử dụng LVM với boot mount point**
 
 ### Logical volume
-![](/image/lvm3.png)
+            ![](/image/lvm3.png)
 
  * Volume Group được chia nhỏ thành nhiều Logical Volume, mỗi Logical Volume có ý nghĩa tương tự như partition. Nó được dùng cho các mount point và được format với những định dạng khác nhau như ext2, ext3, ext4,…
 
@@ -45,7 +45,7 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
 
  * Ví dụ bạn có 4 ổ đĩa mỗi ổ 5GB khi bạn kết hợp nó lại thành 1 volume group 20GB, và bạn có thể tạo ra 2 logical volumes mỗi disk 10GB.
 
-![](lvm4.png)
+             ![](lvm4.png)
 
 ### File Systems
  * Tổ chức và kiểm soát các tập tin
@@ -54,7 +54,7 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
  * Quản lý vị trí vật lý của mọi thành phần dữ liệu 
 
 ## 3. linear volume
-![](/image/lvm5)
+             ![](/image/lvm5.png)
 
  * Là một Logical Volume bình thường được tạo ra từ Volume Group
  * Các Physical Volume thành phần tạo nên Volume Group không nhất thiết phải giống nhau về dung lượng
@@ -65,7 +65,7 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
  
 ## 4. Striped volume
 
-![](/image/lvm6.png)
+             ![](/image/lvm6.png)
 
  * Dữ liệu sẽ được chia đều ra và lưu vào các phân vùng đã có.
  * Tốc độ sẽ nhanh hơn vì tất cả các phân vùng sẽ cùng làm việc. Tốc độ đọc và ghi cũng nhannh hơn phương pháp Linear.
