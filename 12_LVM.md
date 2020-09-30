@@ -84,6 +84,12 @@ Chúng ta có thể kết hợp nhiều Physical Volume thành Volume Groups
  * Khi thực hiện snapshot trên ổ đĩa gốc , tính năng này sẽ thực hiện tạo ra 1 bản sao của vùng dữ liệu đang có trên máy tính và có thể dùng nó để khôi phục lại trạng thái cũ
  * Snapshot chỉ thực hiện tạo ra 1 bản sao ảo, không thể thay thế hoàn toàn quá trình sao lưu dữ liệu.
 
+### LVM Thin Provisioning
+Thin Provisioning là tính năng cấp phát ổ cứng dựa trên sự linh hoạt của LVM. Giả sử ta có một Volume Group, ta sẽ tạo ra 1 Thin Pool từ VG này với dung lượng là 20GB cho nhiều khách hàng sử dụng. Giả sử ta có 3 khách hàng, mỗi khách hàng được cấp 6GB lưu trữ. Như vậy ta có 3 x 6GB là 18GB. Với kỹ thuật cấp phát truyền thống thì ta chỉ có thể cấp phát thêm 2GB cho khách hàng thứ 4
+![](/image/lvm7.png)
+
+Nhưng với kỹ thuật Thin Provisioning, ta vẫn có thể cấp thêm 6GB nữa cho khách hàng thứ 4. Tức là 4 x 6GB = 24GB > 20GB lúc đầu. Sở dĩ ta có thể làm được như vậy là do mỗi user tuy được cấp 6GB nhưng thường thì họ sẽ không xài hết số dung lượng này (nếu 4 khách hàng đều xài hết thì ta sẽ gặp tình trạng Over Provisioning). Ta sẽ giả dụ là họ không xài hết dung lượng được cấp thì trên danh nghĩa mỗi người sẽ được 6GB, nhưng thực tế thì họ xài đến đâu, hệ thống sẽ cấp thêm dung lượng đến đó.
+  *  Over Provisioning(OP) có nghĩa là một phần dung lượng được dành riêng cho hoạt động của chip điều khiển, và người dùng không thể sử dụng phần dung lượng này. Chip điều khiển có thể dùng phần dung lượng này cho các hoạt động như wear-leveling, garbage collection hay các tính năng tối ưu hiệu năng khác.
  
  
  
