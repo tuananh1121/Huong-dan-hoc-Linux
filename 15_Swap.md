@@ -70,6 +70,7 @@ Swappiness cho biết thời điểm hệ thống sẽ chuyển từ bộ nhớ 
  vi /etc/sysctl.conf
  Thêm dòng "vm.swappiness = 10"
  Khởi động lại Server và kiểm tra .
+ ```
 ## Xóa file Swap
  * B1 : Tắt swap
  ```
