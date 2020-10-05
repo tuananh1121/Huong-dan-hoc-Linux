@@ -34,4 +34,51 @@ Khi đã thực hiện xong thì nhấn `w` để lưu lại những thay đổi
 mkfs -t ext4 /dev/sdb1
 ```
 
+Ta tạo thư mục `/data` và mount vào thư mục `/data`
+```
+mount /dev/sdb1 /data
+```
+vào file `/etc/fstab` để chỉnh sửa
+
+![](/image/quota6.png)
+
+Sau khi sửa xong ta dùng lệnh `mount` để thư mục nhận tính năng quota 
+```
+mount -o remount /data 
+```
+Dùng lệnh `quotacheck -mucg /data` để kiểm tra hệ thống tập tin được cấu hình quota và xây dựng bảng sử dụng hiện hành 
+
+Cấp quyền cho thư mục
+```
+chmod 777 /data
+```
+Tiếp theo ta tạo 2 user là `hv1` và `hv2`
+
+![](/image/quota7.png)
+
+Giới hạn dung lượng cho user `hv1`
+```
+edquota -u hv1
+```
+![](/image/quota8.png)
+
+Ở đây giới hạn dung lượng cho `user hv1 là 10MB`
+
+Giới hạn số lượng file lưu trữ cho `hv2`
+```
+edquota -u hv2
+```
+![](/image/quota9.png)
+
+Bật tính năng quota trên thư mục `/data` và kiểm tra các thiết lập trên hv1 và hv2
+```
+# quotaon /data
+# quota -uv hv1
+# quota -uv hv2 
+```
+Sau khi đã cài đặt và thiết lập xong ta vào `Winscp` để kiểm tra.
+
+
+
+
 
