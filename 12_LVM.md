@@ -90,7 +90,147 @@ Thin Provisioning là tính năng cấp phát ổ cứng dựa trên sự linh h
 
 Nhưng với kỹ thuật Thin Provisioning, ta vẫn có thể cấp thêm 6GB nữa cho khách hàng thứ 4. Tức là 4 x 6GB = 24GB > 20GB lúc đầu. Sở dĩ ta có thể làm được như vậy là do mỗi user tuy được cấp 6GB nhưng thường thì họ sẽ không xài hết số dung lượng này (nếu 4 khách hàng đều xài hết thì ta sẽ gặp tình trạng Over Provisioning). Ta sẽ giả dụ là họ không xài hết dung lượng được cấp thì trên danh nghĩa mỗi người sẽ được 6GB, nhưng thực tế thì họ xài đến đâu, hệ thống sẽ cấp thêm dung lượng đến đó.
   *  Over Provisioning(OP) có nghĩa là một phần dung lượng được dành riêng cho hoạt động của chip điều khiển, và người dùng không thể sử dụng phần dung lượng này. Chip điều khiển có thể dùng phần dung lượng này cho các hoạt động như wear-leveling, garbage collection hay các tính năng tối ưu hiệu năng khác.
- 
+## Cấu hình LVM
+* Thêm 2 ổ cứng `sdb` `sdc`
+* B1: Kiểm tra các hard drive có trên hệ thống.
+```
+# lsblk
+```
+* B2: Tạo Partition:
+  * Từ các hard disk trên hệ thống tạo các partition.
+  * Dùng lệnh `fdisk` để tạo
+```
+# fdisk /dev/sdb
+```
+![](/image/lvm8.png)
+
+Nhấn `n` để tiến hành tạo một phân vùng mới. Bây giờ ta chỉ cần làm tuần tự theo hướng dẫn
+
+![](/image/lvm9.png)
+
+Khi tạo nó sẽ hỏi bạn lựa chọn `extended` hoặc `primary` nếu bạn chọn `extended` thì bạn nhập vào e còn chọn `primary` thì bạn nhập p hoặc không cần nhập. Với mỗi ổ đĩa chỉ cho tạo tối đa là 4 phân vùng `primary`. Sau đó sẽ hỏi bạn là phân vùng số mấy nếu bạn không chọn thì nó mặc định là phân vùng tiếp theo của phân vùng trước đó (cái này thường để mặc định). Tiếp theo nó sẽ hỏi `first sector` cái này thường để mặc định. Và `last sector` đây là điều cần chú ý. Bạn muốn dung lượng của phân vùng này là bao nhiêu thì bạn nhập vào `+sizeG`. Ví dụ ở đây ta tạo phân vùng `60G` tôi nhập vào là `+60G`
+
+![](/image/lvm10.png)
+
+Tiếp theo ta tạo thêm phân vùng `sdb2`
+
+![](/image/lvm11.png)
+
+Khi đã thực hiện xong thì nhấn `w` để lưu lại những thay đổi và sẽ thoát ra. Làm tương tự như trên ta tạo ra phân vùng `sdc1` và `sdc2` từ `/dev/sdc`
+
+* B3: Tạo physical volume :
+  * Tạo các physical volume là `/dev/sdb1` , `/dev/sdc1` , `/dev/sdb2` , `/dev/sdc2`
+```
+# pvcreate /dev/sdb1 /dev/sdc1 /dev/sdb2 /dev/sdc2
+```
+![](/image/lvm12.png)
+
+* B4: Tạo volume group :
+  * Nhóm các physical volume thành 1 volume group bằng câu lệnh
+```
+vgcreate vg-demo1 /dev/sdb1 /dev/sdc1    ( vg-demo1 là tên volume group )
+```
+![](/image/lvm13.png)
+
+* B5 : Tạo logical volume
+  * Từ 1 volume group , có thể tạo ra các logical volume bằng lệnh 
+```
+# lvcreate -L 50G -n lv-xfs vg-demo1
+# lvcreate -L 50G -n lv-ext4 vg-demo1
+```
+  * `-L` là dung lượng của logical volume
+  * `-n` là tên của logical volume
+
+![](/image/lvm14.png)
+
+* B6 : Format logical volume
+```
+# mkfs.xfs /dev/vg-demo1/lv-xfs
+```
+![](/image/lvm15.png)
+
+```
+# mkfs.ext4 /dev/vg-demo1/lv-ext4
+```
+
+![](/image/lvm16.png)
+
+B7 : Mount và sử dụng :
+```
+# mkdir dataxfs
+# mount /dev/vg-demo1/lv-xfs dataxfs
+# mkdir dataext4
+# mount /dev/vg-demo1/lv-ext4 dataext4
+# df -h => kiểm tra
+```
+
+![](/image/lvm17.png)
+
+* B8 : Lưu cấu hình vào file /etc/fstab
+```
+# echo /dev/vg-demo1/lv-xfs dataxfs xfs defaults 0 0 >> /etc/fstab
+# echo /dev/vg-demo1/lv-ext4 dataext4 ext4 defaults 0 0 >> /etc/fstab
+```
+
+## Thay đổi dung lượng Logical volume trên LVM
+
+### Tăng kích thước dung lượng logical volume :
+```
+# lvextend -L +5G /dev/vg-demo1/lv-xfs
+```
+### Giảm kích thước logical volume :
+  * Trước tiên phải unmount logical volume muốn giảm 
+```
+# umount /dev/vg-demo1/lv-xfs
+```
+  * Giảm kích thước của logical volume :
+```
+# lvextend -L 5G /dev/vg-demo1/lv-xfs
+```
+  * Format lại logical volume :
+```
+# mkfs.xfs /dev/vg-demo1/lv-xfs
+```
+  * Mount lại logical volume 
+```
+# mount /dev/vg-demo1/lv-xfs dataxfs
+```
+
+## Thay đổi dung lượng Volume Group trên LVM
+
+### thêm 1 partition vào volume group :
+```
+# vgextend /dev/vg-demo1 /dev/sdb2
+```
+![](/image/lvm18.png)
+### Bỏ 1 partition ra khỏi volume group
+```
+vgreduce /dev/vg-demo1 /dev/sdb2
+```
+![](/image/lvm19.png)
+
+## Cách xóa Logical Volumes , Volume Group , Physical Volume
+### Xóa Logical Volume
+ * B1 : Unmount logical volume 
+```
+# umount /dev/vg-demo1/lv-xfs
+```
+ * B2 : Xóa logical volume 
+```
+# lvremove /dev/vg-demo1/lv-xfs
+```
+### Xóa Volume Group
+ * Trước khi xóa volume group , phải đảm bảo xóa hết logical volume :
+ * Xóa volume group bằng lệnh :
+```
+# vgremove /dev/vg-demo1
+```
+### Xóa Physical Volume
+```
+# pvremove /dev/sdb2
+```
+
+
  
  
 
