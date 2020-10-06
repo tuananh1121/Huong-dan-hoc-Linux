@@ -171,7 +171,9 @@ B7 : Mount và sử dụng :
 # echo /dev/vg-demo1/lv-xfs dataxfs xfs defaults 0 0 >> /etc/fstab
 # echo /dev/vg-demo1/lv-ext4 dataext4 ext4 defaults 0 0 >> /etc/fstab
 ```
+
 * B9: kiểm tra 
+
 ![](/image/lvm20.png)
 
 ## Thay đổi dung lượng Logical volume trên LVM
