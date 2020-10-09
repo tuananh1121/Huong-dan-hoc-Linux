@@ -9,6 +9,7 @@ Cấu hình máy Window:
   * RAM 2GB
   * 1 CPU
   * VMnet8 (NAT)
+  
 Cấu hình máy Centos 7:
   * RAM 2GB
   * 1 CPU
@@ -33,7 +34,7 @@ rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum install mysql-server
 ```
 
-Khởi động MySQL
+### Khởi động MySQL
 ```
 systemctl start mysql
 ```
@@ -133,15 +134,21 @@ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ```
 yum --enablerepo = Rem-php71
 ```
+
     * Phiên bản 7.2
+	
 ```
 yum --enablerepo = Rem-php72
 ```
+
     * Phiên bản 7.3
+	
 ```
 yum --enablerepo = Rem-php73
 ```
+
     * Phiên bản 7.4 
+	
 ```
 yum --enablerepo = Rem-php74
 ```
