@@ -96,7 +96,7 @@ wget http://wordpress.org/latest.tar.gz
 ```
 * giải nén file `latest.tar.gz`
 ```
-tar -xvfz latest.tar.gz
+tar xvfz latest.tar.gz
 ```
 * Copy các file trong thư mục WordPress tới đường dẫn /var/www/html
 ```
