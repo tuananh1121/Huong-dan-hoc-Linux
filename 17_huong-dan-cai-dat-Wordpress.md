@@ -85,41 +85,21 @@ http://192.168.44.138
 ```
 ![](/image/wp3.png)
 
-### Cài đặt WordPress
-* Cài đặt `wget`
-```
-yum install wget
-```
-* Tiến hành cài đặt wordpress phiên bản mới nhất
-```
-wget http://wordpress.org/latest.tar.gz
-```
-* giải nén file `latest.tar.gz`
-```
-tar xvfz latest.tar.gz
-```
-* Copy các file trong thư mục WordPress tới đường dẫn /var/www/html
-```
-cp -Rvf /root/wordpress/* /var/www/html
-```
-### Cấu hình wordpress
-* Truy cập vào file cài đặt của wordpress
-```
-cd /var/www/html
-```
-* File cấu hình wordpress là wp-config.php. Tuy nhiên tại đây chỉ có file wp-config-sample.php. Tiến hành sửa lại tên file cấu hình như sau
-```
-mv wp-config-sample.php wp-config.php
-```
-* Mở file config để chỉnh sửa
-```
-vi wp-config.php
-```
-![](/image/wp4.png)
-
-Lưu file cấu hình và thoát.
-
 ### Cài đặt php
+Sử dụng `yum` để cài PHP
+```
+yum install php-gd
+```
+Để test PHP đã cài đặt thành công chưa
+
+Thực hiện lệnh
+```
+echo "<?php phpinfo(); ?>" > /var/www/html/info.php
+```
+Sau đó restart lại `httpd`
+```
+systemctl restart httpd
+```
 Phiên bản có sẵn trong repo của CentOS đang là 5.4. Phiên bản này khá cũ và sẽ khiến bạn gặp một số vấn đề xảy ra khi tiến hành cài đặt wordpress. Vì vậy bạn cần phải cài đặt phiên bản 7x để khắc phục. Bạn cần tiến hành thêm vào kho Remi và EPEL trên hệ thống CentOS:
 * Cài đặt EPEL
 ```
@@ -159,6 +139,38 @@ yum install php-gd
 ```
 Để kiểm tra ta vào Window mở trình duyệt và truy cập vào địa chỉ `http://192.168.44.138/info.php`
 ![](/image/wp5.png)
+
+### Cài đặt WordPress
+* Cài đặt `wget`
+```
+yum install wget
+```
+* Tiến hành cài đặt wordpress phiên bản mới nhất
+```
+wget http://wordpress.org/latest.tar.gz
+```
+* giải nén file `latest.tar.gz`
+```
+tar xvfz latest.tar.gz
+```
+
+### Cấu hình wordpress
+* Truy cập vào file cài đặt của wordpress
+```
+cd /var/www/html
+```
+* File cấu hình wordpress là wp-config.php. Tuy nhiên tại đây chỉ có file wp-config-sample.php. Tiến hành sửa lại tên file cấu hình như sau
+```
+mv wordpress/* /var/www/html
+mv wp-config-sample.php wp-config.php
+```
+* Mở file config để chỉnh sửa
+```
+vi wp-config.php
+```
+![](/image/wp4.png)
+
+Lưu file cấu hình và thoát.
 
 ### Cài đặt giao diện
 Truy cập vào địa chỉ `http://192.168.44.138/wp-admin/install.php` để tiến hành cài đặt.
