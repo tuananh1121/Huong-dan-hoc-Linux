@@ -130,24 +130,24 @@ yum install epel-release
 rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ```
 * Tiến hành cài đặt php. Ở đây ta cần lưu ý về phiên bản cài đặt như sau:
-    #### Phiên bản 7.1
+#### Phiên bản 7.1
 ```
 yum --enablerepo = Rem-php71
 ```
 
-    #### Phiên bản 7.2
+#### Phiên bản 7.2
 	
 ```
 yum --enablerepo = Rem-php72
 ```
 
-    #### Phiên bản 7.3
+#### Phiên bản 7.3
 	
 ```
 yum --enablerepo = Rem-php73
 ```
 
-    #### Phiên bản 7.4 
+#### Phiên bản 7.4 
 	
 ```
 yum --enablerepo = Rem-php74
