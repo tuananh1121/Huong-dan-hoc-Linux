@@ -132,25 +132,25 @@ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 * Tiến hành cài đặt php. Ở đây ta cần lưu ý về phiên bản cài đặt như sau:
 #### Phiên bản 7.1
 ```
-yum --enablerepo = Rem-php71
+yum --enablerepo = Rem-php71 install php
 ```
 
 #### Phiên bản 7.2
 	
 ```
-yum --enablerepo = Rem-php72
+yum --enablerepo = Rem-php72 install php
 ```
 
 #### Phiên bản 7.3
 	
 ```
-yum --enablerepo = Rem-php73
+yum --enablerepo = Rem-php73 install php
 ```
 
 #### Phiên bản 7.4 
 	
 ```
-yum --enablerepo = Rem-php74
+yum --enablerepo = Rem-php74 install php
 ```
 Ở đây mình dừng phiên bản 7.3
 * Cài đặt gói hỗ trợ `php-dg`
